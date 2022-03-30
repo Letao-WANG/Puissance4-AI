@@ -1,6 +1,6 @@
-from PlayerClasses import Human
-from AIClass import AI
-from GameBoard import GameBoard
+from player import Human
+from ai import AI
+from board import GameBoard
 
 
 class GameClient:

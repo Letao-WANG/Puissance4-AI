@@ -1,5 +1,5 @@
 import math
-from PlayerClasses import Player
+from player import Player
 
 INFINITY = math.inf
 
