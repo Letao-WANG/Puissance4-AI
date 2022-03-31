@@ -1,8 +1,11 @@
-from src.mcts.model.TreeNode import TreeNode
-from src.mcts.model.util import rollout
+from src.model.TreeNode import TreeNode
+from src.model.util import rollout
 
 
 class TreeSearch:
+    """
+    MCTS tree, set of MCTS nodes
+    """
     def __init__(self, node: TreeNode):
         self.root = node
 

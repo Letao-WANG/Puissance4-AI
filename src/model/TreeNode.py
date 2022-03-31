@@ -1,8 +1,11 @@
-from src.mcts.model.board import *
+from src.model.board import *
 from collections import defaultdict
 
 
 class TreeNode(object):
+    """
+    MCTS node
+    """
     def __init__(self, board: Board, parent=None):
         self._number_of_visits = 0
         self._results = defaultdict(int)
@@ -11,7 +14,8 @@ class TreeNode(object):
         self.children = []
 
     def __repr__(self):
-        return "n: " + str(self.n) + ", q: " + str(self.q)
+        value = (self.q / self.n) + 1.4 * np.sqrt((2 * np.log(self.n) / self.n))
+        return "n: " + str(self.n) + ", q: " + str(self.q) + ", value: " + str(value)
 
     @property
     def untried_actions(self):

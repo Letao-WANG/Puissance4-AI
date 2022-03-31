@@ -1,17 +1,15 @@
-from src.mcts.model.board import Board
-from src.mcts.model.move import Move
-from src.mcts.model.TreeNode import TreeNode
-from src.mcts.model.TreeSearch import TreeSearch
-import numpy as np
+from src.model.board import Board
+from src.model.move import Move
 
 
 def graphics(state):
     """
-    :param state: np.array() which is the state of board
+    print the board
+    state: param state: np.array() which is the state of board
     """
+
     for i in range(state.shape[0]):
-        print("")
-        print("{0:3}".format(i).center(8) + "|", end='')
+        print("\t")
         for j in range(state.shape[1]):
             if state[i][j] == 0:
                 print('_'.center(8), end='')
@@ -20,28 +18,31 @@ def graphics(state):
             if state[i][j] == -1:
                 print('O'.center(8), end='')
     print("")
-    print("______________________________")
+    print("----"*14)
+    for i in range(state.shape[0]):
+        print('   |   ' + str(i), end='')
+    print("   |")
 
 
-def get_action(board: Board, next_to_move):
-    move = -1
+def get_action(board: Board):
     col = input("Your move: ")
     can_add, row = board.can_add_chip(int(col))
     if can_add:
-        move = Move(row, int(col), next_to_move)
+        move = Move(row, int(col), board.next_to_move)
     else:
         print("Can not add it:")
-        move = get_action(board, next_to_move)
+        move = get_action(board)
     return move
 
 
 def judge(board):
     if board.is_game_over():
-        if board.game_result == 1:
+        graphics(board.state)
+        if board.game_result == -1:
             print("You lose!")
         if board.game_result == 0:
             print("Tie!")
-        if board.game_result == -1:
+        if board.game_result == 1:
             print("You Win!")
         return 1
     else:

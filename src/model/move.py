@@ -1,4 +1,7 @@
 class Move(object):
+    """
+    AN action of moving
+    """
     def __init__(self, x_coor: int, y_coor: int, value):
         self.x_coor = x_coor
         self.y_coor = y_coor
