@@ -11,5 +11,5 @@ while not board.game_result:
     move = get_action(board, board.next_to_move)
     board = board.move(move)
 
-    if judge(board) == 1 or judge(board) == -1:
+    if judge(board) == 1:
         break

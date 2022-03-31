@@ -10,6 +10,9 @@ class TreeNode(object):
         self.parent = parent
         self.children = []
 
+    def __repr__(self):
+        return "n: " + str(self.n) + ", q: " + str(self.q)
+
     @property
     def untried_actions(self):
         """list of Move"""
