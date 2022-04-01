@@ -15,7 +15,7 @@ class Board(object):
         row: number of rows in the board
         col: number of cols in the board
         state: information about the position of the chess
-        next_to_move: the next play who play the chess
+        next_to_move: the next player who play the chess
     """
     x = 1
     o = -1

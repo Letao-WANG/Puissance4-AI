@@ -1,7 +1,6 @@
 import numpy as np
 
-from src.model.TreeNode import TreeNode
-from src.model.TreeSearch import TreeSearch
+from src.model.mcts import TreeSearch, TreeNode
 from src.model.board import Board
 from src.model.util import heuristic
 
@@ -33,9 +32,9 @@ def test_heuristic():
     init_state = np.array([[0, 0, 0, 0, 0, 0, 0],
                            [0, 0, 0, 0, 0, 0, 0],
                            [0, 0, 0, 0, 0, 0, 0],
-                           [0, 0, 0, 0, 0, 0, 0],
-                           [0, 0, 0, 0, 0, 0, 0],
-                           [1, 0, 0, 0, 0, 0, 0]])
+                           [0, 0, -1, 1, 0, 0, 0],
+                           [0, 0, 0, 1, 0, 0, 0],
+                           [0, 0, 0, 1, 0, 0, 0]])
     board = Board(state=init_state, next_to_move=-1)
     print(heuristic(board))
 

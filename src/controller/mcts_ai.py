@@ -1,7 +1,6 @@
 import numpy as np
 
-from src.model.TreeNode import TreeNode
-from src.model.TreeSearch import TreeSearch
+from src.model.mcts import TreeSearch, TreeNode
 from src.model.board import Board
 from src.view.graphics import graphics, get_action, judge
 

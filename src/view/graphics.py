@@ -9,7 +9,7 @@ def graphics(state):
     """
 
     for i in range(state.shape[0]):
-        print("\t")
+        print("\t\t\t")
         for j in range(state.shape[1]):
             if state[i][j] == 0:
                 print('_'.center(8), end='')
@@ -19,9 +19,10 @@ def graphics(state):
                 print('O'.center(8), end='')
     print("")
     print("----"*14)
-    for i in range(state.shape[0]):
-        print('   |   ' + str(i), end='')
-    print("   |")
+    print("\t")
+    for i in range(state.shape[0]+1):
+        print(str(i) + '   |   ', end='')
+    print("")
 
 
 def get_action(board: Board):
