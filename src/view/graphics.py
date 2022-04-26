@@ -19,7 +19,7 @@ def graphics(state):
                 print('O'.center(8), end='')
     print("")
     print("----"*14)
-    print("\t")
+    print("   ", end='')
     for i in range(state.shape[0]+1):
         print(str(i) + '   |   ', end='')
     print("")

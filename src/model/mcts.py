@@ -15,7 +15,7 @@ class TreeNode(object):
         self.children = []
 
     def __repr__(self):
-        value = (self.q / self.n) + 1.4 * np.sqrt((2 * np.log(self.n) / self.n))
+        value = (self.q / self.n) + 1.4 * np.sqrt((2 * np.log(self.parent.n) / self.n))
         return "n: " + str(self.n) + ", q: " + str(self.q) + ", value: " + str(value)
 
     @property
