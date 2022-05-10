@@ -40,11 +40,11 @@ def judge(board):
     if board.is_game_over():
         graphics(board.state)
         if board.game_result == -1:
-            print("You lose!")
+            print("You win!")
         if board.game_result == 0:
             print("Tie!")
         if board.game_result == 1:
-            print("You Win!")
+            print("You lose!")
         return 1
     else:
         return -1
