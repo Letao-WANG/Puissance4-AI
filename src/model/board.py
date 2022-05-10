@@ -126,13 +126,13 @@ class Board(object):
                 ticks = self.check_adjacent(chip, row, column, 0, 1)
                 if ticks == 4:
                     return True
-        # positive slope diagonal
+        # positive slope diagonal, like \
         for row in range(self.row - 3):
             for column in range(self.col - 3):
                 ticks = self.check_adjacent(chip, row, column, 1, 1)
                 if ticks == 4:
                     return True
-        # negative slope diagonal
+        # negative slope diagonal like /
         for row in range(3, self.row):
             for column in range(self.col - 3):
                 ticks = self.check_adjacent(chip, row, column, -1, 1)
@@ -141,6 +141,15 @@ class Board(object):
         return False
 
     def check_adjacent(self, chip, row, column, delta_row, delta_col):
+        """
+        Get the adjacent chip number
+        :param chip: chip to verify
+        :param row: row index
+        :param column: col index
+        :param delta_row: row difference
+        :param delta_col: col difference
+        :return: the number of adjacent chip
+        """
         count = 0
         for i in range(4):
             current_chip = self.get_chip(row, column)

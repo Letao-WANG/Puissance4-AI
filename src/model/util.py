@@ -4,6 +4,10 @@ from src.model.move import Move
 
 
 def rollout_policy(possible_moves):
+    """
+    :param possible_moves:
+    :return: choose randomly a move
+    """
     return possible_moves[np.random.randint(len(possible_moves))]
 
 

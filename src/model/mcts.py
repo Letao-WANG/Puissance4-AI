@@ -47,6 +47,9 @@ class TreeNode(object):
         return child_node
 
     def is_terminal_node(self):
+        """
+        :return: if the game has overed
+        """
         return self.board.is_game_over()
 
     def backpropagate(self, result):
@@ -63,6 +66,15 @@ class TreeNode(object):
         return len(self.untried_actions) == 0
 
     def best_child(self, c_param=1.4):
+        """
+        Get the child node which has the biggest value with parameter 1.4.
+        c_param, it represents the will to visit (or select) the nodes on average.
+        For example, if the current node's c_param value is large (100),
+        all its child nodes have the same visit count value.
+
+        :param c_param: constant, by default 1.4
+        :return: child node with the biggest value
+        """
         choices_weights = [
             (c.q / c.n) + c_param * np.sqrt((2 * np.log(self.n) / c.n))
             for c in self.children
@@ -78,6 +90,12 @@ class TreeSearch:
         self.root = node
 
     def best_action(self, simulations_number):
+        """
+        Get the best child node, which means the child node that have the biggest value
+        :param simulations_number: suggest 500 to 5000.
+                The higher the number, the better the result and the slower the speed.
+        :return: the best child which has the biggest value with parameter 0.
+        """
         for _ in range(0, simulations_number):
             v = self.tree_policy()  # v is a node
             result = rollout(v.board)
@@ -86,6 +104,10 @@ class TreeSearch:
         return self.root.best_child(c_param=0)
 
     def tree_policy(self):
+        """
+        MCTS Selection and Expansion
+        :return: self or new node
+        """
         current_node = self.root
         while not current_node.is_terminal_node():
             if not current_node.is_fully_expanded():

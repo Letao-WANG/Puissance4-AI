@@ -4,8 +4,16 @@ from src.model.mcts import TreeSearch, TreeNode
 from src.model.board import Board
 from src.view.graphics import graphics, get_action, judge
 
+"""
+Playing game with MCTS
+"""
+
 
 def init_board():
+    """
+    Initialize game board class
+    :return:
+    """
     init_state = np.zeros((6, 7))
     ini_board = Board(state=init_state, next_to_move=1)
     init_root = TreeNode(ini_board)
