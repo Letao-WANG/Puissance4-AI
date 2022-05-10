@@ -1,6 +1,10 @@
 from src.model.board import Board
 from src.model.move import Move
 
+"""
+This file is about user interface
+"""
+
 
 def graphics(state):
     """
@@ -18,9 +22,9 @@ def graphics(state):
             if state[i][j] == -1:
                 print('O'.center(8), end='')
     print("")
-    print("----"*14)
+    print("--------"*state.shape[1])
     print("   ", end='')
-    for i in range(state.shape[0]+1):
+    for i in range(state.shape[1]):
         print(str(i) + '   |   ', end='')
     print("")
 
