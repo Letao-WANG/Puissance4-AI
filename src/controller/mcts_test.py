@@ -1,8 +1,8 @@
 import numpy as np
 
-from src.model.mcts import TreeSearch, TreeNode
-from src.model.board import Board
-from src.model.util import heuristic
+from mcts import TreeSearch, TreeNode
+from board import Board
+from util import heuristic
 
 # init_state = np.array([[0, 0, 0, 0, 0, 0, 0],
 #                        [0, 0, 0, 0, 0, 0, 0],

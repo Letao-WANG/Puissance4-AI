@@ -1,6 +1,6 @@
 import numpy as np
 
-from src.model.move import Move
+from move import Move
 
 
 def rollout_policy(possible_moves):

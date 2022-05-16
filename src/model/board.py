@@ -1,7 +1,7 @@
 import numpy
 import numpy as np
 
-from src.model.move import Move
+from move import Move
 
 
 class Board(object):

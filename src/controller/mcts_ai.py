@@ -1,8 +1,8 @@
 import numpy as np
 
-from src.model.mcts import TreeSearch, TreeNode
-from src.model.board import Board
-from src.view.graphics import graphics, get_action, judge
+from mcts import TreeSearch, TreeNode
+from board import Board
+from graphics import graphics, get_action, judge
 
 """
 Playing game with MCTS

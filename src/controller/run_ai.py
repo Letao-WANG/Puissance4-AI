@@ -1,22 +1,32 @@
 import numpy as np
+import sys
+import os
 
-from src.model.board import Board
-from src.model.util import get_next_move
-from src.view.graphics import get_action, graphics, judge
+root_dir = os.getcwd().replace("controller","")
+sys.path.append(root_dir + "controller")
+sys.path.append(root_dir + "model")
+sys.path.append(root_dir + "view")
 
-init_state = np.zeros((6, 7))
-board = Board(state=init_state, next_to_move=1)
+from board import Board
+from util import get_next_move
+from graphics import get_action, graphics, judge
 
-while not board.game_result:
-    graphics(board.state)
 
-    # human part
-    move = get_action(board)
-    board = board.move(move)
 
-    # ai part
-    move = get_next_move(board)
-    board = board.move(move)
+if __name__ == "__main__":
+    init_state = np.zeros((6, 7))
+    board = Board(state=init_state, next_to_move=1)
 
-    if judge(board) == 1:
-        break
+    while not board.game_result:
+        graphics(board.state)
+
+        # human part
+        move = get_action(board)
+        board = board.move(move)
+
+        # ai part
+        move = get_next_move(board)
+        board = board.move(move)
+
+        if judge(board) == 1:
+            break

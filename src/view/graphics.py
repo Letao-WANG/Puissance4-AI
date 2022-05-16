@@ -1,5 +1,5 @@
-from src.model.board import Board
-from src.model.move import Move
+from board import Board
+from move import Move
 
 """
 This file is about user interface

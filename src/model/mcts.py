@@ -1,5 +1,5 @@
-from src.model.util import rollout
-from src.model.board import *
+from util import rollout
+from board import *
 from collections import defaultdict
 
 
