@@ -30,14 +30,23 @@ def graphics(state):
 
 
 def get_action(board: Board):
-    col = input("Your move: ")
-    can_add, row = board.can_add_chip(int(col))
+    while True:
+        try:
+            col = int(input("Your move: "))
+            if col>6 or col<0:
+                raise ValueError
+            break
+        except ValueError:
+            print("Please input integer between 0 and 6")
+
+    can_add, row = board.can_add_chip(col)
     if can_add:
-        move = Move(row, int(col), board.next_to_move)
+        move = Move(row, col, board.next_to_move)
     else:
-        print("Can not add it:")
+        print("Can not add it: ",message)
         move = get_action(board)
     return move
+
 
 
 def judge(board):
