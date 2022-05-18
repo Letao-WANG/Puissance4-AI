@@ -14,7 +14,7 @@ from graphics import get_action, graphics, judge
 
 if __name__ == "__main__":
     init_state = np.zeros((6, 7))
-    board = Board(state=init_state, next_to_move=1)
+    board = Board(state=init_state, next_to_move=-1)
 
     while not board.game_result:
         # human part
