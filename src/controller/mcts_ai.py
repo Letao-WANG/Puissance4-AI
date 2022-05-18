@@ -2,14 +2,14 @@ import numpy as np
 import os
 import sys
 
-root_dir = os.getcwd().replace("controller","")
-sys.path.append(root_dir + "controller")
-sys.path.append(root_dir + "model")
-sys.path.append(root_dir + "view")
-
 from mcts import TreeSearch, TreeNode
 from board import Board
 from graphics import graphics, get_action, judge
+
+root_dir = os.getcwd().replace("controller", "")
+sys.path.append(root_dir + "controller")
+sys.path.append(root_dir + "model")
+sys.path.append(root_dir + "view")
 
 """
 Playing game with MCTS
@@ -45,4 +45,3 @@ while True:
     graphics(board.state)
     if judge(board) == 1:
         break
-

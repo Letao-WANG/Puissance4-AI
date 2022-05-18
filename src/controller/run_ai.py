@@ -2,15 +2,14 @@ import numpy as np
 import sys
 import os
 
-root_dir = os.getcwd().replace("controller","")
-sys.path.append(root_dir + "controller")
-sys.path.append(root_dir + "model")
-sys.path.append(root_dir + "view")
-
 from board import Board
 from util import get_next_move
 from graphics import get_action, graphics, judge
 
+root_dir = os.getcwd().replace("controller", "")
+sys.path.append(root_dir + "controller")
+sys.path.append(root_dir + "model")
+sys.path.append(root_dir + "view")
 
 
 if __name__ == "__main__":
