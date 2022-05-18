@@ -62,11 +62,11 @@ def judge(board):
     if board.is_game_over():
         graphics(board.state)
         if board.game_result == -1: #AI a gagné
-            print("You lose!")
+            print("O wins!")
         if board.game_result == 0:
             print("Draw!")
         if board.game_result == 1:
-            print("You win!") #Humain a gagné
+            print("X wins!") #Humain a gagné
         return 1
     else:
         return -1
