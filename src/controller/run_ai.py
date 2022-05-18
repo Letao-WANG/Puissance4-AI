@@ -17,14 +17,14 @@ if __name__ == "__main__":
     board = Board(state=init_state, next_to_move=1)
 
     while not board.game_result:
+        # ai part
+        move = get_next_move(board)
+        board = board.move(move)
+
         graphics(board.state)
 
         # human part
         move = get_action(board)
-        board = board.move(move)
-
-        # ai part
-        move = get_next_move(board)
         board = board.move(move)
 
         if judge(board) == 1:

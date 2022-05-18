@@ -8,8 +8,8 @@ class Board(object):
     """
     This class stores information of state.
 
-    x = 1: first player, use board.x (human)
-    o = -1: second player, use board.o (AI)
+    x = 1: first player, use board.x (AI)
+    o = -1: second player, use board.o (human)
 
     Attributes:
         row: number of rows in the board

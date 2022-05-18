@@ -30,10 +30,15 @@ def graphics(state):
 
 
 def get_action(board: Board):
+    """
+    Ask the user where the next move will be
+    :param board: class Board
+    :return: Move class
+    """
     while True:
         try:
             col = int(input("Your move: "))
-            if col>6 or col<0:
+            if col > 6 or col < 0:
                 raise ValueError
             break
         except ValueError:
@@ -43,19 +48,23 @@ def get_action(board: Board):
     if can_add:
         move = Move(row, col, board.next_to_move)
     else:
-        print("Can not add it: ",message)
+        print("Can not add it")
         move = get_action(board)
     return move
 
 
-
 def judge(board):
+    """
+    Confirm if the game is over, and print the message
+    :param board: class Board
+    :return: 1 -> is overed, -1 -> not yet
+    """
     if board.is_game_over():
         graphics(board.state)
         if board.game_result == -1:
             print("You win!")
         if board.game_result == 0:
-            print("Tie!")
+            print("Draw!")
         if board.game_result == 1:
             print("You lose!")
         return 1

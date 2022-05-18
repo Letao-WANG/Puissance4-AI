@@ -27,7 +27,7 @@ def test_value_mcts():
     board = Board(state=init_state, next_to_move=1)
     init_root = TreeNode(board)
     init_mcts = TreeSearch(init_root)
-    init_best_node = init_mcts.best_action(5000)
+    init_best_node = init_mcts.best_action(3000)
 
     for i in range(7):
         print(str(i) + ' ' + str(init_root.children[i]))
