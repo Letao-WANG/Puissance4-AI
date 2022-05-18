@@ -2,7 +2,7 @@ import numpy as np
 import os
 import sys
 
-root_dir = os.getcwd().replace("controller","")
+root_dir = os.getcwd().replace("controller", "")
 sys.path.append(root_dir + "controller")
 sys.path.append(root_dir + "model")
 sys.path.append(root_dir + "view")
@@ -10,6 +10,7 @@ sys.path.append(root_dir + "view")
 from mcts import TreeSearch, TreeNode
 from board import Board
 from util import heuristic
+
 
 # init_state = np.array([[0, 0, 0, 0, 0, 0, 0],
 #                        [0, 0, 0, 0, 0, 0, 0],
@@ -26,7 +27,7 @@ def test_value_mcts():
     board = Board(state=init_state, next_to_move=1)
     init_root = TreeNode(board)
     init_mcts = TreeSearch(init_root)
-    init_best_node = init_mcts.best_action(5000)
+    init_best_node = init_mcts.best_action(3000)
 
     for i in range(7):
         print(str(i) + ' ' + str(init_root.children[i]))
