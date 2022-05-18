@@ -43,7 +43,7 @@ def get_action(board: Board):
     if can_add:
         move = Move(row, col, board.next_to_move)
     else:
-        print("Can not add it: ",message)
+        print("Can not add it")
         move = get_action(board)
     return move
 
@@ -52,12 +52,12 @@ def get_action(board: Board):
 def judge(board):
     if board.is_game_over():
         graphics(board.state)
-        if board.game_result == -1:
-            print("You win!")
+        if board.game_result == -1: #AI a gagné
+            print("You lose!")
         if board.game_result == 0:
             print("Tie!")
         if board.game_result == 1:
-            print("You lose!")
+            print("You win!") #Humain a gagné
         return 1
     else:
         return -1

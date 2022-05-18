@@ -8,7 +8,7 @@ sys.path.append(root_dir + "model")
 sys.path.append(root_dir + "view")
 
 from board import Board
-from util import get_next_move
+from util import get_next_move2
 from graphics import get_action, graphics, judge
 
 
@@ -25,7 +25,7 @@ if __name__ == "__main__":
         board = board.move(move)
 
         # ai part
-        move = get_next_move(board)
+        move = get_next_move2(board)
         board = board.move(move)
 
         if judge(board) == 1:

@@ -1,4 +1,3 @@
-import numpy
 import numpy as np
 
 from move import Move
@@ -16,15 +15,19 @@ class Board(object):
         col: number of cols in the board
         state: information about the position of the chess
         next_to_move: the next player who play the chess
+        depth: profondeur maximale pour la recherche (root)
+        depth: profondeur actuelle
     """
     x = 1
     o = -1
 
-    def __init__(self, state: numpy.ndarray, next_to_move=1):
+    def __init__(self, state: np.ndarray, next_to_move=1):
         self.row = state.shape[0]
         self.col = state.shape[1]
         self.state = state
         self.next_to_move = next_to_move
+        self.depth = 0
+        self.current_depth = 0
 
     @property
     def game_result(self):
@@ -32,7 +35,7 @@ class Board(object):
         0: draw,
         None: not finished,
         Board.x: x won
-        Board o: o won
+        Board.o: o won
         :return: result of the game
         """
         if len(self.get_legal_actions()) == 0:
@@ -103,6 +106,16 @@ class Board(object):
             if can_add:
                 moves.append(Move(row, col, self.next_to_move))
         return moves
+
+    def remove_chip(self, row, column):
+        new_state = np.copy(self.state)
+        new_state[row, column] = 0
+        if self.next_to_move == Board.x:
+            next_to_move = Board.o
+        else:
+            next_to_move = Board.x
+        return Board(new_state, next_to_move)
+
 
     def get_chip(self, row, column):
         return self.state[row, column]
