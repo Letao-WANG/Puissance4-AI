@@ -1,5 +1,4 @@
 import numpy as np
-
 from move import Move
 
 
@@ -28,6 +27,9 @@ class Board(object):
         self.next_to_move = next_to_move
         self.depth = 0
         self.current_depth = 0
+
+    def set_difficulty(self, difficulty):
+        self.depth = difficulty
 
     @property
     def game_result(self):

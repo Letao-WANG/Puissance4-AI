@@ -16,6 +16,17 @@ if __name__ == "__main__":
     init_state = np.zeros((6, 7))
     board = Board(state=init_state, next_to_move=-1)
 
+    while True:
+        try:
+            level = int(input("Enter difficulty from 1(easy) to 3(difficult) : "))
+            if level > 3 or level < 1:
+                raise ValueError
+            break
+        except ValueError:
+            print("Entrez un entier entre 1 et 3")
+
+    board.set_difficulty(level*2)
+
     while not board.game_result:
         # human part
         graphics(board.state)
