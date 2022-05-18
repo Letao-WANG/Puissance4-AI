@@ -27,7 +27,7 @@ def rollout(board):
     return current_rollout_board.game_result
 
 
-def heuristic1(board):
+def heuristic(board):
     """
     Evaluate function, judge the situation of board
     :param board: class Board
