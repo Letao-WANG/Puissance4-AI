@@ -12,13 +12,12 @@ Méthodologie :
 
 - Définir la structure représentant les états (données + fonctions)
 - Implémenter la boucle de jeu pour 2 joueurs humains
+- Implémenter l'algorithme Monte Carlo tree search
+- Remplacer un joueur humain par l’ordinateur avec l'algorithme MCTS
+
+
 - Implémenter et intégrer l’élagage αβ 
 - Remplacer un joueur humain par l’ordinateur avec l’élagage αβ, avec plusieurs difficultés de jeu
 - 3 profondeurs de recherche
 - 2 fonctions d'évaluation
-
-
-- Implémenter l'algorithme Monte Carlo tree search
-- Remplacer un joueur humain par l’ordinateur avec l'algorithme MCTS
-- Comparaison des solutions optimales théoriques
 - Universalité de l'algorithme

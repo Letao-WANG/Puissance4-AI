@@ -42,10 +42,10 @@ class Board(object):
         """
         if len(self.get_legal_actions()) == 0:
             return 0
-        if self.is_winner(Board.x):
-            return Board.x
-        elif self.is_winner(Board.o):
+        if self.is_winner(Board.o):
             return Board.o
+        elif self.is_winner(Board.x):
+            return Board.x
         return None
 
     def is_game_over(self):

@@ -12,7 +12,6 @@ from graphics import get_action, graphics, judge_human
 
 
 if __name__ == "__main__":
-
     # Initialization
     init_state = np.zeros((6, 7))
     board = Board(state=init_state, next_to_move=1)

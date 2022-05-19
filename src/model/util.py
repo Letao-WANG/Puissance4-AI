@@ -182,7 +182,7 @@ def alpha_beta_search(board):
     Because max will choose the biggest value and min the smallest value, we don't have to visit all the branches. We
     can cut some of them that are never going to be chosen L'élagage alpha beta n'affecte pas le résultat final
     """
-    board.current_depth = 0  # initialise the depth of the current node that we are visitiong
+    board.current_depth = 0  # initialise the depth of the current node that we are visiting
     scores = []
     best_action = None
     v = -INFINITY

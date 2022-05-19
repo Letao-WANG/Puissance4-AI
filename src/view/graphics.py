@@ -74,7 +74,7 @@ def judge(board):
 
 def judge_human(board):
     """
-    Confirm if the game is over, and print the message
+    Confirm if the game is over, and print the message for 2 human player
     :param board: class Board
     :return: 1 -> is overed, -1 -> not yet
     """

@@ -35,6 +35,7 @@ if __name__ == "__main__":
         # ai part
         graphics(board.state)
         print("AI part, wait... ")
+
         move = get_next_move(board)
         board = board.move(move)
 
