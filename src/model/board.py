@@ -89,6 +89,24 @@ class Board(object):
 
         return Board(new_state, next_to_move)
 
+    def move2(self, move):
+        """
+        play a chess in the board, get next situation of board
+        :param move:
+        :return: next board (Class Board)
+        """
+        if not self.is_move_legal(move):
+            raise ValueError("move " + move + " on board " + self.state + " is not legal")
+        new_state = np.copy(self.state)
+        new_state[move.x_coor, move.y_coor] = move.value
+
+        if self.next_to_move == Board.x:
+            next_to_move = Board.o
+        else:
+            next_to_move = Board.x
+        self.state = new_state
+        self.next_to_move = next_to_move
+
     def can_add_chip(self, col):
         """
         Check if there is room to add in a chip return row if chip can be added
@@ -116,8 +134,9 @@ class Board(object):
             next_to_move = Board.o
         else:
             next_to_move = Board.x
-        return Board(new_state, next_to_move)
-
+        self.state = new_state
+        self.next_to_move = next_to_move
+        # return Board(new_state, next_to_move)
 
     def get_chip(self, row, column):
         return self.state[row, column]
@@ -173,4 +192,6 @@ class Board(object):
             row += delta_row
             column += delta_col
         return count
+
+
 

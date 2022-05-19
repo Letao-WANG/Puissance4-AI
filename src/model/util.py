@@ -1,10 +1,9 @@
 import numpy as np
 import math
-
-from move import Move
 from board import *
 
 INFINITY = math.inf
+
 
 def rollout_policy(possible_moves):
     """
@@ -38,13 +37,14 @@ def heuristic(board):
         result = rollout(board)
         if result == 1:
             win_count += 1
-    return win_count/100.0
+    return win_count / 100.0
 
 
-def get_next_move(board):
-    can_add, row = board.can_add_chip(int(0))
-    move = Move(row, int(0), board.next_to_move)
-    return move
+# def get_next_move(board):
+#     can_add, row = board.can_add_chip(int(0))
+#     move = Move(row, int(0), board.next_to_move)
+#     return move
+
 
 def get_next_move2(board):
     return alpha_beta_search(board)
@@ -124,6 +124,7 @@ def heuristic2(board):
 
     return horizontal_score + vertical_score + diagonal1_score + diagonal2_score
 
+
 def score_position(board, row, column, delta_row, delta_col):
     """
     Heuristic evaluation for current state +1000, +100, +10, +1 for
@@ -166,6 +167,7 @@ def score_position(board, row, column, delta_row, delta_col):
     # otherwise
     return human_score + ai_score
 
+
 def alpha_beta_search(board):
     board.current_depth = 0
     scores = []
@@ -173,18 +175,21 @@ def alpha_beta_search(board):
     v = -INFINITY
     alpha = -INFINITY
     beta = INFINITY
-    max_value = -INFINITY
+    maxi_value = -INFINITY
     actions = board.get_legal_actions()
     for action in actions:
-        board.move(action) #add the chip
+        board.move2(action)  # add the chip
         v = min_value(board, alpha, beta)
         scores.append(v)
-        if v > max_value:
+        # print("action: " + str(best_action))
+        # print("v: " + str(v))
+        # print("maxi_value: " + str(maxi_value))
+        if v > maxi_value:
             best_action = action
-            max_value = v
-            alpha = max(alpha, max_value)
+            maxi_value = v
+            alpha = max(alpha, maxi_value)
         board.current_depth -= 1
-        board.remove_chip(action.x_coor, action.y_coor) #remove the chip
+        board.remove_chip(action.x_coor, action.y_coor)  # remove the chip
     if len(scores) == 1:
         best_action = actions[0]
     return best_action
@@ -194,12 +199,12 @@ def max_value(board, alpha, beta):
     board.current_depth += 1
     actions = board.get_legal_actions()
     if not actions or board.current_depth >= board.depth:  # if list of next moves is empty or reached root
-        score = heuristic2(board)
+        score = heuristic(board)
         return score
     else:
         v = -INFINITY
         for action in actions:
-            board.move(action) #add the chip
+            board.move2(action)  # add the chip
             v = max(v, min_value(board, alpha, beta))
             if v >= beta:
                 board.current_depth -= 1
@@ -210,16 +215,17 @@ def max_value(board, alpha, beta):
             board.remove_chip(action.x_coor, action.y_coor)
         return v
 
+
 def min_value(board, alpha, beta):
     board.current_depth += 1
     actions = board.get_legal_actions()
     if not actions or board.current_depth >= board.depth:  # if list of next moves is empty or reached root
-        score = heuristic2(board)
+        score = heuristic(board)
         return score
     else:
         v = INFINITY
         for action in actions:
-            board.move(action) #add the chip
+            board.move2(action)  # add the chip
             v = min(v, max_value(board, alpha, beta))
             if v <= alpha:
                 board.current_depth -= 1

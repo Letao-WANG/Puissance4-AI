@@ -164,6 +164,9 @@ class AI(Player):
             scores.append(v)
             if self.show_scores:
                 print("SCORE: ", v)
+            print("action: " + str(best_action))
+            print("v: " + str(v))
+            print("maxi_value: " + str(max_value))
             if v > max_value:
                 best_action = action
                 max_value = v
