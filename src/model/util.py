@@ -169,7 +169,17 @@ def score_position(board, row, column, delta_row, delta_col):
 
 
 def alpha_beta_search(board):
-    board.current_depth = 0
+    """
+
+    Args:
+        board: current state of the game for the current player
+
+    Returns: the possible action from the current state that maximizes min_value along the path to state
+    Aim : choose the best move that leads to the best minmax value = best value possible against the best move of the ennemy
+    Because max will chose the bigest value and min the smalest value, we don't have to visit all the branches. We can cut some of them that are never going to be choosed
+    L'élagage alpha beta n'affecte pas le résultat final
+    """
+    board.current_depth = 0 #initialise the depth of the current node that we are visitiong
     scores = []
     best_action = None
     v = -INFINITY
@@ -188,7 +198,7 @@ def alpha_beta_search(board):
             best_action = action
             maxi_value = v
             alpha = max(alpha, maxi_value)
-        board.current_depth -= 1
+        board.current_depth -= 1 #go back to the parent
         board.remove_chip(action.x_coor, action.y_coor)  # remove the chip
     if len(scores) == 1:
         best_action = actions[0]
@@ -196,10 +206,20 @@ def alpha_beta_search(board):
 
 
 def max_value(board, alpha, beta):
+    """
+        Args:
+            board: current state of the game for the current player
+            alpha: value of the best alternative for max along the path to state
+            beta: value of the best alternative for min along the path to state
+
+        Returns: the biggest utility score
+
+        """
     board.current_depth += 1
+    # all the actions possibles from the current state
     actions = board.get_legal_actions()
     if not actions or board.current_depth >= board.depth:  # if list of next moves is empty or reached root
-        score = heuristic2(board)
+        score = heuristic2(board) #predict the utility of one branch that we cannot develop
         return score
     else:
         v = -INFINITY
@@ -207,20 +227,31 @@ def max_value(board, alpha, beta):
             board.move2(action)  # add the chip
             v = max(v, min_value(board, alpha, beta))
             if v >= beta:
-                board.current_depth -= 1
-                board.remove_chip(action.x_coor, action.y_coor)
+                board.current_depth -= 1 #go back to the parent
+                board.remove_chip(action.x_coor, action.y_coor) #remove the chip we added to simulate it's utility
                 return v
             alpha = max(v, alpha)
-            board.current_depth -= 1
-            board.remove_chip(action.x_coor, action.y_coor)
+            board.current_depth -= 1 #go back to the parent
+            board.remove_chip(action.x_coor, action.y_coor) #remove the chip we added to simulate it's utility
         return v
 
 
 def min_value(board, alpha, beta):
+    """
+
+    Args:
+        board: current state of the game for the current player
+        alpha: value of the best alternative for max along the path to state
+        beta: value of the best alternative for min along the path to state
+
+    Returns: the smallest utility score
+
+    """
     board.current_depth += 1
+    #all the actions possibles from the current state
     actions = board.get_legal_actions()
     if not actions or board.current_depth >= board.depth:  # if list of next moves is empty or reached root
-        score = heuristic2(board)
+        score = heuristic2(board) #predict the utility of one branch that we cannot develop
         return score
     else:
         v = INFINITY
@@ -229,9 +260,9 @@ def min_value(board, alpha, beta):
             v = min(v, max_value(board, alpha, beta))
             if v <= alpha:
                 board.current_depth -= 1
-                board.remove_chip(action.x_coor, action.y_coor)
+                board.remove_chip(action.x_coor, action.y_coor) #remove the chip we added to simulate it's utility
                 return v
             beta = min(v, beta)
             board.current_depth -= 1
-            board.remove_chip(action.x_coor, action.y_coor)
+            board.remove_chip(action.x_coor, action.y_coor) #remove the chip we added to simulate it's utility
         return v
