@@ -173,14 +173,13 @@ def score_position(board, row, column, delta_row, delta_col):
 
 def alpha_beta_search(board):
     """
-
+    Gives the best move that leads to the best minmax value = best value possible against the best move of the enemy
+    Because max will choose the biggest value and min the smallest value, we don't have to visit all the branches. We
+    can cut some of them that are never going to be chosen L'élagage alpha beta n'affecte pas le résultat final
     Args:
         board: current state of the game for the current player
 
-    Returns: the possible action from the current state that maximizes min_value along the path to state Aim : choose
-    the best move that leads to the best minmax value = best value possible against the best move of the enemy
-    Because max will choose the biggest value and min the smallest value, we don't have to visit all the branches. We
-    can cut some of them that are never going to be chosen L'élagage alpha beta n'affecte pas le résultat final
+    Returns: the possible action from the current state that maximizes min_value along the path to state
     """
     board.current_depth = 0  # initialise the depth of the current node that we are visiting
     scores = []
@@ -207,6 +206,7 @@ def alpha_beta_search(board):
 
 def max_value(board, alpha, beta):
     """
+        Gives an utility score
         Args:
             board: current state of the game for the current player
             alpha: value of the best alternative for max along the path to state
@@ -218,7 +218,7 @@ def max_value(board, alpha, beta):
     board.current_depth += 1
     # all the actions possibles from the current state
     actions = board.get_legal_actions()
-    if not actions or board.current_depth >= board.depth:  # if list of next moves is empty or reached root
+    if not actions or board.current_depth >= board.depth:  # if list of next moves is empty or reached max depth
         score = heuristic2(board)  # predict the utility of one branch that we cannot develop
         return score
     else:
@@ -238,7 +238,7 @@ def max_value(board, alpha, beta):
 
 def min_value(board, alpha, beta):
     """
-
+    Gives an utility score
     Args:
         board: current state of the game for the current player
         alpha: value of the best alternative for max along the path to state
@@ -250,7 +250,7 @@ def min_value(board, alpha, beta):
     board.current_depth += 1
     # all the actions possibles from the current state
     actions = board.get_legal_actions()
-    if not actions or board.current_depth >= board.depth:  # if list of next moves is empty or reached root
+    if not actions or board.current_depth >= board.depth:  # if list of next moves is empty or reached max depth
         score = heuristic2(board)  # predict the utility of one branch that we cannot develop
         return score
     else:

@@ -128,6 +128,12 @@ class Board(object):
         return moves
 
     def remove_chip(self, row, column):
+        """
+        removes a chip from the board of the player
+        :param row: row index
+        :param column: column index
+        
+        """
         new_state = np.copy(self.state)
         new_state[row, column] = 0
         if self.next_to_move == Board.x:
@@ -139,6 +145,12 @@ class Board(object):
         # return Board(new_state, next_to_move)
 
     def get_chip(self, row, column):
+        """
+        gets the value of the matrix wich represents the board of the current player
+        :param row: row index of the chip
+        :param column: column index of the chip
+        :return: 1 if this player placed his chip on this row and column index, 0 otherwise
+        """
         return self.state[row, column]
 
     def is_winner(self, chip):
