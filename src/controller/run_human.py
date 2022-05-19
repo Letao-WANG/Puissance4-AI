@@ -8,7 +8,7 @@ sys.path.append(root_dir + "model")
 sys.path.append(root_dir + "view")
 
 from board import Board
-from graphics import get_action, graphics, judge
+from graphics import get_action, graphics, judge_human
 
 
 if __name__ == "__main__":
@@ -23,5 +23,5 @@ if __name__ == "__main__":
         move = get_action(board)
         board = board.move(move)
 
-        if judge(board) == 1:
+        if judge_human(board) == 1:
             break

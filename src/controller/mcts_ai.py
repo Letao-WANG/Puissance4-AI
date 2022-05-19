@@ -11,8 +11,6 @@ from mcts import TreeSearch, TreeNode
 from board import Board
 from graphics import graphics, get_action, judge
 
-
-
 """
 Playing game with MCTS
 """

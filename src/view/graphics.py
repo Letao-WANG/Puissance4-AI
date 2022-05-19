@@ -61,12 +61,31 @@ def judge(board):
     """
     if board.is_game_over():
         graphics(board.state)
-        if board.game_result == -1: #Humain a gagné
+        if board.game_result == -1:  # Humain a gagné
             print("You win!")
         if board.game_result == 0:
             print("Draw!")
         if board.game_result == 1:
-            print("You lose!") #IA a gagné
+            print("You lose!")  # IA a gagné
+        return 1
+    else:
+        return -1
+
+
+def judge_human(board):
+    """
+    Confirm if the game is over, and print the message
+    :param board: class Board
+    :return: 1 -> is overed, -1 -> not yet
+    """
+    if board.is_game_over():
+        graphics(board.state)
+        if board.game_result == -1:
+            print("O win!")
+        if board.game_result == 0:
+            print("Draw!")
+        if board.game_result == 1:
+            print("X win!")
         return 1
     else:
         return -1

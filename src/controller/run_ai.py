@@ -8,9 +8,8 @@ sys.path.append(root_dir + "model")
 sys.path.append(root_dir + "view")
 
 from board import Board
-from util import get_next_move2
+from util import get_next_move
 from graphics import get_action, graphics, judge
-
 
 if __name__ == "__main__":
     init_state = np.zeros((6, 7))
@@ -36,7 +35,7 @@ if __name__ == "__main__":
         # ai part
         graphics(board.state)
         print("AI part, wait... ")
-        move = get_next_move2(board)
+        move = get_next_move(board)
         board = board.move(move)
 
         if judge(board) == 1:

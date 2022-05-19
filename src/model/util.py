@@ -1,4 +1,3 @@
-import numpy as np
 import math
 from board import *
 
@@ -26,9 +25,18 @@ def rollout(board):
     return current_rollout_board.game_result
 
 
+def get_next_move(board):
+    """
+    get the next best action (Move)
+    :param board: class Board
+    :return: class Move
+    """
+    return alpha_beta_search(board)
+
+
 def heuristic(board):
     """
-    Evaluate function, judge the situation of board
+    Evaluate function 1, judge the situation of board
     :param board: class Board
     :return: the possibility of winning for the player who just finished its (or his, her) turn
     """
@@ -40,17 +48,12 @@ def heuristic(board):
     return win_count / 100.0
 
 
-# def get_next_move(board):
-#     can_add, row = board.can_add_chip(int(0))
-#     move = Move(row, int(0), board.next_to_move)
-#     return move
-
-
-def get_next_move2(board):
-    return alpha_beta_search(board)
-
-
 def heuristic2(board):
+    """
+    Evaluate function 2, judge the situation of board
+    :param board: class Board
+    :return: general score
+    """
     horizontal_score = 0
     vertical_score = 0
     diagonal1_score = 0
@@ -174,12 +177,12 @@ def alpha_beta_search(board):
     Args:
         board: current state of the game for the current player
 
-    Returns: the possible action from the current state that maximizes min_value along the path to state
-    Aim : choose the best move that leads to the best minmax value = best value possible against the best move of the ennemy
-    Because max will chose the bigest value and min the smalest value, we don't have to visit all the branches. We can cut some of them that are never going to be choosed
-    L'élagage alpha beta n'affecte pas le résultat final
+    Returns: the possible action from the current state that maximizes min_value along the path to state Aim : choose
+    the best move that leads to the best minmax value = best value possible against the best move of the enemy
+    Because max will choose the biggest value and min the smallest value, we don't have to visit all the branches. We
+    can cut some of them that are never going to be chosen L'élagage alpha beta n'affecte pas le résultat final
     """
-    board.current_depth = 0 #initialise the depth of the current node that we are visitiong
+    board.current_depth = 0  # initialise the depth of the current node that we are visitiong
     scores = []
     best_action = None
     v = -INFINITY
@@ -191,14 +194,11 @@ def alpha_beta_search(board):
         board.move2(action)  # add the chip
         v = min_value(board, alpha, beta)
         scores.append(v)
-        # print("action: " + str(best_action))
-        # print("v: " + str(v))
-        # print("maxi_value: " + str(maxi_value))
         if v > maxi_value:
             best_action = action
             maxi_value = v
             alpha = max(alpha, maxi_value)
-        board.current_depth -= 1 #go back to the parent
+        board.current_depth -= 1  # go back to the parent
         board.remove_chip(action.x_coor, action.y_coor)  # remove the chip
     if len(scores) == 1:
         best_action = actions[0]
@@ -219,7 +219,7 @@ def max_value(board, alpha, beta):
     # all the actions possibles from the current state
     actions = board.get_legal_actions()
     if not actions or board.current_depth >= board.depth:  # if list of next moves is empty or reached root
-        score = heuristic2(board) #predict the utility of one branch that we cannot develop
+        score = heuristic2(board)  # predict the utility of one branch that we cannot develop
         return score
     else:
         v = -INFINITY
@@ -227,12 +227,12 @@ def max_value(board, alpha, beta):
             board.move2(action)  # add the chip
             v = max(v, min_value(board, alpha, beta))
             if v >= beta:
-                board.current_depth -= 1 #go back to the parent
-                board.remove_chip(action.x_coor, action.y_coor) #remove the chip we added to simulate it's utility
+                board.current_depth -= 1  # go back to the parent
+                board.remove_chip(action.x_coor, action.y_coor)  # remove the chip we added to simulate it's utility
                 return v
             alpha = max(v, alpha)
-            board.current_depth -= 1 #go back to the parent
-            board.remove_chip(action.x_coor, action.y_coor) #remove the chip we added to simulate it's utility
+            board.current_depth -= 1  # go back to the parent
+            board.remove_chip(action.x_coor, action.y_coor)  # remove the chip we added to simulate it's utility
         return v
 
 
@@ -248,10 +248,10 @@ def min_value(board, alpha, beta):
 
     """
     board.current_depth += 1
-    #all the actions possibles from the current state
+    # all the actions possibles from the current state
     actions = board.get_legal_actions()
     if not actions or board.current_depth >= board.depth:  # if list of next moves is empty or reached root
-        score = heuristic2(board) #predict the utility of one branch that we cannot develop
+        score = heuristic2(board)  # predict the utility of one branch that we cannot develop
         return score
     else:
         v = INFINITY
@@ -260,9 +260,9 @@ def min_value(board, alpha, beta):
             v = min(v, max_value(board, alpha, beta))
             if v <= alpha:
                 board.current_depth -= 1
-                board.remove_chip(action.x_coor, action.y_coor) #remove the chip we added to simulate it's utility
+                board.remove_chip(action.x_coor, action.y_coor)  # remove the chip we added to simulate it's utility
                 return v
             beta = min(v, beta)
             board.current_depth -= 1
-            board.remove_chip(action.x_coor, action.y_coor) #remove the chip we added to simulate it's utility
+            board.remove_chip(action.x_coor, action.y_coor)  # remove the chip we added to simulate it's utility
         return v
