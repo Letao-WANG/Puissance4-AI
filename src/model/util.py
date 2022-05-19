@@ -138,9 +138,9 @@ def score_position(board, row, column, delta_row, delta_col):
     ai_points = 0
     for i in range(4):
         current_chip = board.get_chip(row, column)
-        if board.next_to_move == board.x:  # if current chip is AI
+        if current_chip == board.x:  # if current chip is AI
             ai_points += 1
-        elif board.next_to_move == board.o:  # player chip
+        elif current_chip == board.o:  # player chip
             human_points += 1
         # empty otherwise
         row += delta_row
@@ -199,7 +199,7 @@ def max_value(board, alpha, beta):
     board.current_depth += 1
     actions = board.get_legal_actions()
     if not actions or board.current_depth >= board.depth:  # if list of next moves is empty or reached root
-        score = heuristic(board)
+        score = heuristic2(board)
         return score
     else:
         v = -INFINITY
@@ -220,7 +220,7 @@ def min_value(board, alpha, beta):
     board.current_depth += 1
     actions = board.get_legal_actions()
     if not actions or board.current_depth >= board.depth:  # if list of next moves is empty or reached root
-        score = heuristic(board)
+        score = heuristic2(board)
         return score
     else:
         v = INFINITY
